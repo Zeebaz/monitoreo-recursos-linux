@@ -33,6 +33,19 @@ static int escribir_archivo(struct seq_file *archivo, void *v)
     seq_printf(archivo, "\"");
     seq_printf(archivo, "%ld", porcentaje);
     seq_printf(archivo, "\"");
+    
+    // seq_printf(archivo, "\"total\":");
+    // seq_printf(archivo, "\"");
+    // seq_printf(archivo, "%ld", si->totalram );
+    // seq_printf(archivo, "\",");
+    // seq_printf(archivo, "\"free\":");
+    // seq_printf(archivo, "\"");
+    // seq_printf(archivo, "%ld", si->totalram );
+    // seq_printf(archivo, "\"");
+
+    
+
+
     seq_printf(archivo, "}");
 
     return 0;
