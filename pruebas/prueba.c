@@ -1,6 +1,6 @@
 #include <linux/kernel.h>
-#include <stdio.h>
 #include <sys/sysinfo.h>
+#include <stdio.h>
 
 int main()
 {

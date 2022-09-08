@@ -3,6 +3,7 @@
         "kernel.h": "c",
         "module.h": "c",
         "sysinfo.h": "c",
-        "stdio.h": "c"
+        "stdio.h": "c",
+        "sched.h": "c"
     }
 }
