@@ -11,7 +11,8 @@
 // header para usar la lib seq_file y manejar el archivo en /proc - 
 #include <linux/seq_file.h>
 // devuelve información sobre estadísticas globales del sistema
-#include <linux/mm.h>
+// #include <linux/mm.h>
+<linux/hugetlb.h>
 
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("Modulo de control de consumo de memoria ram");
@@ -20,7 +21,7 @@ MODULE_VERSION("1.0.0");
 
 // funcion que se ejecutara cada vez que se lea el archivo con el comando CAT
 // aqui se debe de hacer la construccion del json para obtener la informacion
-struct sysinfo * sys_info;
+struct sysinfo * si;
 
 static int escribir_archivo(struct seq_file *archivo, void *v)
 {    
