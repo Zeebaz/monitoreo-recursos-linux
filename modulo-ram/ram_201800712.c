@@ -1,6 +1,6 @@
 // para creacion de modulos -
 #include <linux/module.h>
-// para usar KERN_INFO (informacion del kernel) - 
+// para usar KERN_INFO (informacion del kernel) -
 #include <linux/kernel.h>
 // header para los macros module_init y module_exit -
 #include <linux/init.h>
@@ -8,11 +8,12 @@
 #include <linux/proc_fs.h>
 // para usar copy_from_user, permisos de usuario
 #include <asm/uaccess.h>
-// header para usar la lib seq_file y manejar el archivo en /proc - 
+// header para usar la lib seq_file y manejar el archivo en /proc -
 #include <linux/seq_file.h>
 // devuelve información sobre estadísticas globales del sistema
 // #include <linux/mm.h>
-<linux/hugetlb.h>
+// #include <linux/hugetlb.h>
+#include <sys/sysinfo.h>
 
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("Modulo de control de consumo de memoria ram");
@@ -21,11 +22,11 @@ MODULE_VERSION("1.0.0");
 
 // funcion que se ejecutara cada vez que se lea el archivo con el comando CAT
 // aqui se debe de hacer la construccion del json para obtener la informacion
-struct sysinfo * si;
+struct sysinfo *si;
 
 static int escribir_archivo(struct seq_file *archivo, void *v)
-{    
-    long porcentaje = (si->totalram - si->freeram)* (100/si->totalram);
+{
+    long porcentaje = (si->totalram - si->freeram) * (100 / si->totalram);
 
     seq_printf(archivo, "{");
     seq_printf(archivo, "\"percent\":");
@@ -36,8 +37,6 @@ static int escribir_archivo(struct seq_file *archivo, void *v)
 
     return 0;
 }
-
-
 
 // funcion que se ejecutara cada vez que se lea el archivo con el comando CAT
 static int al_abrir(struct inode *inode, struct file *file)
