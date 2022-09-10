@@ -26,26 +26,15 @@ struct sysinfo *si;
 
 static int escribir_archivo(struct seq_file *archivo, void *v)
 {
-    long porcentaje = (si->totalram - si->freeram) * (100 / si->totalram);
+    // long porcentaje = (si->totalram - si->freeram) * (100 / si->totalram);
 
-    seq_printf(archivo, "{");
-    seq_printf(archivo, "\"percent\":");
-    seq_printf(archivo, "\"");
-    seq_printf(archivo, "%ld", porcentaje);
-    seq_printf(archivo, "\"");
-    
-    // seq_printf(archivo, "\"total\":");
-    // seq_printf(archivo, "\"");
-    // seq_printf(archivo, "%ld", si->totalram );
-    // seq_printf(archivo, "\",");
-    // seq_printf(archivo, "\"free\":");
-    // seq_printf(archivo, "\"");
-    // seq_printf(archivo, "%ld", si->totalram );
-    // seq_printf(archivo, "\"");
-
+    const double megabyte = 1024 * 1024;
     
 
-
+    seq_printf(archivo, "{\n");
+    seq_printf(archivo, "\"total\": \"%ld\"", si->totalram / megabyte);
+    seq_printf(archivo, ",\n");
+    seq_printf(archivo, "\"free\": \"%ld\"", si->freeram / megabyte);    
     seq_printf(archivo, "}");
 
     return 0;
